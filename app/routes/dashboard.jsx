@@ -1,7 +1,6 @@
 import { Link } from "react-router";
 import { useAuth } from "../context/AuthContext";
 import { PLANS } from "../data/plans";
-import { INVOICES } from "../data/invoices";
 
 const STATS = [
   { label: "Projects", value: "12" },
@@ -13,7 +12,6 @@ const STATS = [
 export default function Dashboard() {
   const { currentUser } = useAuth();
   const plan = PLANS.find((p) => p.id === currentUser.planId) || PLANS[0];
-  const recentInvoice = INVOICES.filter((i) => i.userId === currentUser.id)[0];
 
   return (
     <div className="flex flex-col gap-8 max-w-4xl">
