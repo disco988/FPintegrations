@@ -8,7 +8,8 @@ import {
 } from "react-router";
 
 import type { Route } from "./+types/root";
-import { AuthProvider } from "~/context/AuthContext";
+import { AuthProvider } from "./context/AuthContext";
+import { SubscriptionProvider } from "./context/SubscriptionContext";
 import "./app.css";
 
 export const links: Route.LinksFunction = () => [
@@ -45,7 +46,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
 export default function App() {
   return (
     <AuthProvider>
-      <Outlet />
+      <SubscriptionProvider>
+        <Outlet />
+      </SubscriptionProvider>
     </AuthProvider>
   );
 }

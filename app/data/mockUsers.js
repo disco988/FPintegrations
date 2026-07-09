@@ -1,0 +1,22 @@
+export const MOCK_USERS = [
+  {
+    id: "u1",
+    name: "Alex Morgan",
+    email: "admin@admin.com",
+    password: "admin",
+    firm: "Morgan Advisory Group",
+    planId: "standard",
+    clients: ["c1", "c2", "c3"],
+    createdAt: "2024-03-10",
+  },
+  {
+    id: "u2",
+    name: "Sarah Chen",
+    email: "sarah@example.com",
+    password: "password",
+    firm: "Chen Wealth Partners",
+    planId: "premium",
+    clients: ["c1", "c2", "c3", "c4", "c5"],
+    createdAt: "2024-05-22",
+  },
+];
