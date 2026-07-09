@@ -11,7 +11,7 @@ const STATS = [
 
 export default function Dashboard() {
   const { currentUser } = useAuth();
-  const plan = PLANS.find((p) => p.id === currentUser.planId) || PLANS[0];
+  const plan = PLANS.find((p) => p.id === currentUser.planId);
 
   return (
     <div className="flex flex-col gap-8 max-w-4xl">
