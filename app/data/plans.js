@@ -1,0 +1,47 @@
+export const PLANS = [
+  {
+    id: "standard",
+    name: "Standard",
+    price: 10,
+    period: "month",
+    description: "Perfect for individuals getting started.",
+    features: [
+      "Up to 3 projects",
+      "1 GB storage",
+      "Basic analytics",
+      "Email support",
+    ],
+  },
+  {
+    id: "pro",
+    name: "Pro",
+    price: 29,
+    period: "month",
+    description: "Best for growing teams and professionals.",
+    features: [
+      "Unlimited projects",
+      "50 GB storage",
+      "Advanced analytics",
+      "Priority email support",
+      "Custom domains",
+      "API access",
+    ],
+    highlighted: true,
+  },
+  {
+    id: "business",
+    name: "Business",
+    price: 79,
+    period: "month",
+    description: "For organizations that need more power.",
+    features: [
+      "Everything in Pro",
+      "500 GB storage",
+      "Team management",
+      "SSO / SAML",
+      "Dedicated account manager",
+      "SLA guarantee",
+      "Audit logs",
+    ],
+  },
+];
