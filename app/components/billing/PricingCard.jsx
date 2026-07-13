@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import Button from "../ui/Button";
+import { withFprTid } from "../../utils/linkBuilder";
 
 export default function PricingCard({
   plan,
@@ -25,6 +26,9 @@ export default function PricingCard({
         state: { message: "Please log in to upgrade your plan." },
       });
     }
+
+    const finalUrl = withFprTid(plan.link);
+    window.open(finalUrl, "_blank", "noopener,noreferrer");
   }
 
   function renderButton() {
