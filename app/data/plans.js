@@ -12,7 +12,7 @@ export const PLANS = [
       "Basic allocation charts",
       "Community support",
     ],
-    stripeLink: null,
+    link: null,
   },
   {
     id: "standard",
@@ -27,7 +27,7 @@ export const PLANS = [
       "Basic reports",
       "Email support",
     ],
-    stripeLink: "https://buy.stripe.com/placeholder-standard",
+    link: "https://dawidfp-test.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Starter-EUR-Monthly&utm_source=cb-app-copy",
   },
   {
     id: "premium",
@@ -44,7 +44,7 @@ export const PLANS = [
       "Portfolio benchmarking",
     ],
     highlighted: true,
-    stripeLink: "https://buy.stripe.com/placeholder-premium",
+    link: "https://dawidfp-test.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Business-EUR-Monthly&utm_source=cb-app-copy",
   },
   {
     id: "business",
@@ -61,6 +61,6 @@ export const PLANS = [
       "SSO & audit logs",
       "API access",
     ],
-    stripeLink: "https://buy.stripe.com/placeholder-business",
+    link: "https://dawidfp-test.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Enterprise-EUR-Monthly&utm_source=cb-app-copy",
   },
 ];

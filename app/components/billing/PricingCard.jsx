@@ -3,20 +3,27 @@ import { Link, useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import Button from "../ui/Button";
 
-export default function PricingCard({ plan, context = "pricing", currentPlanId }) {
+export default function PricingCard({
+  plan,
+  context = "pricing",
+  currentPlanId,
+}) {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
   const [downgradeNotice, setDowngradeNotice] = useState(false);
 
-  const isCurrent     = context === "dashboard" && currentPlanId === plan.id;
+  const isCurrent = context === "dashboard" && currentPlanId === plan.id;
   const isHighlighted = plan.highlighted && context === "pricing";
-  const isFree        = plan.price === 0;
-  const isOnPaidPlan  = context === "dashboard" && currentUser && currentPlanId !== "free";
+  const isFree = plan.price === 0;
+  const isOnPaidPlan =
+    context === "dashboard" && currentUser && currentPlanId !== "free";
 
   function handleStripeClick(e) {
     if (!currentUser) {
       e.preventDefault();
-      navigate("/login", { state: { message: "Please log in to upgrade your plan." } });
+      navigate("/login", {
+        state: { message: "Please log in to upgrade your plan." },
+      });
     }
   }
 
@@ -32,7 +39,11 @@ export default function PricingCard({ plan, context = "pricing", currentPlanId }
     if (isFree) {
       if (isOnPaidPlan) {
         return (
-          <Button variant="outline" className="w-full" onClick={() => setDowngradeNotice(true)}>
+          <Button
+            variant="outline"
+            className="w-full"
+            onClick={() => setDowngradeNotice(true)}
+          >
             Downgrade to Free
           </Button>
         );
@@ -47,7 +58,12 @@ export default function PricingCard({ plan, context = "pricing", currentPlanId }
     }
 
     return (
-      <a href={plan.stripeLink} target="_blank" rel="noopener noreferrer" onClick={handleStripeClick}>
+      <a
+        href={plan.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        onClick={handleStripeClick}
+      >
         <Button
           variant={isHighlighted ? "primary" : "outline"}
           className="w-full"
@@ -87,8 +103,12 @@ export default function PricingCard({ plan, context = "pricing", currentPlanId }
           <span className="text-4xl font-extrabold text-gray-900">Free</span>
         ) : (
           <>
-            <span className="text-4xl font-extrabold text-gray-900">${plan.price}</span>
-            <span className="text-gray-400 mb-1.5 text-sm">/ {plan.period}</span>
+            <span className="text-4xl font-extrabold text-gray-900">
+              ${plan.price}
+            </span>
+            <span className="text-gray-400 mb-1.5 text-sm">
+              / {plan.period}
+            </span>
           </>
         )}
       </div>
@@ -106,7 +126,8 @@ export default function PricingCard({ plan, context = "pricing", currentPlanId }
 
       {downgradeNotice && (
         <div className="rounded-lg bg-amber-50 border border-amber-200 px-4 py-3 text-xs text-amber-800 leading-relaxed">
-          Your plan will automatically downgrade to Free once your current billing period ends. No action required.
+          Your plan will automatically downgrade to Free once your current
+          billing period ends. No action required.
           <button
             onClick={() => setDowngradeNotice(false)}
             className="block mt-1.5 text-amber-600 hover:underline font-medium"
