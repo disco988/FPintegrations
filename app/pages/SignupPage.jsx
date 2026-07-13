@@ -8,7 +8,12 @@ export default function SignupPage() {
   const { signup } = useAuth();
   const navigate = useNavigate();
 
-  const [form, setForm] = useState({ name: "", email: "", firm: "", password: "" });
+  const [form, setForm] = useState({
+    name: "",
+    email: "",
+    firm: "",
+    password: "",
+  });
   const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
 
@@ -20,7 +25,8 @@ export default function SignupPage() {
     const errs = {};
     if (!form.name.trim()) errs.name = "Full name is required.";
     if (!form.email.trim()) errs.email = "Email is required.";
-    if (form.password.length < 6) errs.password = "Password must be at least 6 characters.";
+    if (form.password.length < 6)
+      errs.password = "Password must be at least 6 characters.";
     return errs;
   }
 
@@ -36,6 +42,9 @@ export default function SignupPage() {
 
     const ok = signup(form);
     if (ok) {
+      if (window.fpr) {
+        window.fpr("referral", { email: form.email });
+      }
       navigate("/dashboard", { replace: true });
     } else {
       setErrors({ email: "An account with this email already exists." });
@@ -46,10 +55,15 @@ export default function SignupPage() {
   return (
     <>
       <div className="mb-6">
-        <h1 className="text-2xl font-bold text-gray-900 mb-1">Create your account</h1>
+        <h1 className="text-2xl font-bold text-gray-900 mb-1">
+          Create your account
+        </h1>
         <p className="text-sm text-gray-500">
           Already have an account?{" "}
-          <Link to="/login" className="text-indigo-600 hover:underline font-medium">
+          <Link
+            to="/login"
+            className="text-indigo-600 hover:underline font-medium"
+          >
             Log in
           </Link>
         </p>
@@ -105,8 +119,14 @@ export default function SignupPage() {
 
         <p className="text-xs text-gray-400 text-center">
           By signing up you agree to our{" "}
-          <a href="#" className="underline">Terms</a> and{" "}
-          <a href="#" className="underline">Privacy Policy</a>.
+          <a href="#" className="underline">
+            Terms
+          </a>{" "}
+          and{" "}
+          <a href="#" className="underline">
+            Privacy Policy
+          </a>
+          .
         </p>
       </form>
     </>
