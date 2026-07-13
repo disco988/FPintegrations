@@ -37,7 +37,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           dangerouslySetInnerHTML={{
             __html: `
       (function(w){w.fpr=w.fpr||function(){w.fpr.q=w.fpr.q||[];w.fpr.q[arguments[0]=='set'?'unshift':'push'](arguments);};})(window);
-      fpr("init", {cid:"YOUR_ACCOUNT_ID"});
+      fpr("init", { cid: "014waxs2" });
       fpr("click");
     `,
           }}
