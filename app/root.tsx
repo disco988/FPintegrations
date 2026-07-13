@@ -33,6 +33,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+      (function(w){w.fpr=w.fpr||function(){w.fpr.q=w.fpr.q||[];w.fpr.q[arguments[0]=='set'?'unshift':'push'](arguments);};})(window);
+      fpr("init", {cid:"YOUR_ACCOUNT_ID"});
+      fpr("click");
+    `,
+          }}
+        />
+        <script src="https://cdn.firstpromoter.com/fpr.js" async />
       </head>
       <body>
         {children}
