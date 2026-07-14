@@ -33,6 +33,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <Meta />
         <Links />
+
         <script
           dangerouslySetInnerHTML={{
             __html: `
@@ -43,6 +44,37 @@ export function Layout({ children }: { children: React.ReactNode }) {
           }}
         />
         <script src="https://cdn.firstpromoter.com/fpr.js" async />
+        <script src="https://js.chargebee.com/v2/chargebee.js"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+  function getFPTid() {
+    return window.FPROM && window.FPROM.data.tid || ('fp_' + (new Date).getTime());
+  }
+  var chargebeeInstance;
+  var counter = 0;
+  var chargebeeTrackFunc = function () {
+    var tid = getFPTid();
+    try {
+      chargebeeInstance = Chargebee.getInstance();
+    }
+    catch (err) { };
+    if (tid && chargebeeInstance) {
+      var cart = chargebeeInstance.getCart();
+      cart.setCustomer({ cf_tid: tid });
+    }
+  };
+  var stateCheck = setInterval(function () {
+    if ((document.readyState === "complete" && chargebeeInstance) || counter === 20) {
+      chargebeeTrackFunc();
+      clearInterval(stateCheck);
+      counter = 0;
+    }
+    counter++;
+  }, 100);
+    `,
+          }}
+        />
       </head>
       <body>
         {children}

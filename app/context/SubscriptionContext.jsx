@@ -10,7 +10,7 @@ export function SubscriptionProvider({ children }) {
 
   const value = useMemo(() => {
     if (!currentUser) {
-      return { plan: null, clients: [], clientCount: 0, atLimit: false };
+      return { plan: null, clients: [], clientCount: 0, atLimit: false, points: 0 };
     }
 
     const plan = PLANS.find((p) => p.id === currentUser.planId) || PLANS[0];
@@ -19,8 +19,9 @@ export function SubscriptionProvider({ children }) {
     );
     const clientCount = clients.length;
     const atLimit = plan.clientLimit !== null && clientCount >= plan.clientLimit;
+    const points = currentUser.points ?? 0;
 
-    return { plan, clients, clientCount, atLimit };
+    return { plan, clients, clientCount, atLimit, points };
   }, [currentUser]);
 
   return (

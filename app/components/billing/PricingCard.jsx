@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link, useNavigate } from "react-router";
 import { useAuth } from "../../context/AuthContext";
 import Button from "../ui/Button";
-import { withFprTid } from "../../utils/linkBuilder";
 
 export default function PricingCard({
   plan,
@@ -19,16 +18,26 @@ export default function PricingCard({
   const isOnPaidPlan =
     context === "dashboard" && currentUser && currentPlanId !== "free";
 
-  function handleStripeClick(e) {
+  function handleCheckout(e) {
     if (!currentUser) {
       e.preventDefault();
       navigate("/login", {
         state: { message: "Please log in to upgrade your plan." },
       });
+
+      return;
     }
 
-    const finalUrl = withFprTid(plan.link);
-    window.open(finalUrl, "_blank", "noopener,noreferrer");
+    const cbInstance = window.Chargebee.init({
+      site: "dawidfp-test",
+      isItemsModel: true,
+    });
+
+    const product = cbInstance.initializeProduct(plan.itemPriceId);
+    const cart = cbInstance.getCart();
+    cart.replaceProduct(product);
+    cart.proceedToCheckout();
+
   }
 
   function renderButton() {
@@ -62,19 +71,13 @@ export default function PricingCard({
     }
 
     return (
-      <a
-        href={plan.link}
-        target="_blank"
-        rel="noopener noreferrer"
-        onClick={handleStripeClick}
+      <Button
+        variant={isHighlighted ? "primary" : "outline"}
+        className="w-full"
+        onClick={handleCheckout}
       >
-        <Button
-          variant={isHighlighted ? "primary" : "outline"}
-          className="w-full"
-        >
-          Get {plan.name}
-        </Button>
-      </a>
+        Get {plan.name}
+      </Button>
     );
   }
 

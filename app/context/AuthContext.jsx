@@ -48,6 +48,7 @@ export function AuthProvider({ children }) {
       firm,
       planId: "free",
       clients: [],
+      points: 100,
       createdAt: new Date().toISOString().split("T")[0],
     };
 

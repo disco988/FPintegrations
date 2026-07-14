@@ -28,6 +28,7 @@ export const PLANS = [
       "Email support",
     ],
     link: "https://dawidfp-test.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Starter-EUR-Monthly&utm_source=cb-app-copy",
+    itemPriceId: "Starter-EUR-Monthly",
   },
   {
     id: "premium",
@@ -45,6 +46,7 @@ export const PLANS = [
     ],
     highlighted: true,
     link: "https://dawidfp-test.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Business-EUR-Monthly&utm_source=cb-app-copy",
+    itemPriceId: "Business-EUR-Monthly",
   },
   {
     id: "business",
@@ -62,5 +64,6 @@ export const PLANS = [
       "API access",
     ],
     link: "https://dawidfp-test.chargebee.com/hosted_pages/checkout?subscription_items[item_price_id][0]=Enterprise-EUR-Monthly&utm_source=cb-app-copy",
+    itemPriceId: "Enterprise-EUR-Monthly",
   },
 ];

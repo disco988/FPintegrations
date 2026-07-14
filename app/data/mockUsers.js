@@ -7,6 +7,7 @@ export const MOCK_USERS = [
     firm: "Morgan Advisory Group",
     planId: "standard",
     clients: ["c1", "c2", "c3"],
+    points: 1250,
     createdAt: "2024-03-10",
   },
   {
@@ -17,6 +18,7 @@ export const MOCK_USERS = [
     firm: "Chen Wealth Partners",
     planId: "premium",
     clients: ["c1", "c2", "c3", "c4", "c5"],
+    points: 3400,
     createdAt: "2024-05-22",
   },
 ];

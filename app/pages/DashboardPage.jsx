@@ -29,7 +29,7 @@ function calcGrowth(history) {
 }
 
 export default function DashboardPage() {
-  const { plan, clients, clientCount, atLimit } = useSubscription();
+  const { plan, clients, clientCount, atLimit, points } = useSubscription();
 
   const totalAUM          = clients.reduce((sum, c) => sum + c.portfolioValue, 0);
   const aggregateHistory  = buildAggregateHistory(clients);
@@ -48,8 +48,8 @@ export default function DashboardPage() {
             {new Date().toLocaleDateString("en-US", { month: "long", year: "numeric" })}
           </p>
         </div>
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          {[...Array(4)].map((_, i) => <StatCardSkeleton key={i} />)}
+        <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
+          {[...Array(5)].map((_, i) => <StatCardSkeleton key={i} />)}
         </div>
         <div className="bg-white border-2 border-dashed border-gray-200 rounded-2xl py-20 text-center flex flex-col items-center gap-4">
           <div className="text-5xl">👥</div>
@@ -82,11 +82,12 @@ export default function DashboardPage() {
         <UpgradePrompt planName={plan.name} clientLimit={plan.clientLimit} />
       )}
 
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
         <StatCard label="Total AUM"      value={formatAUM(totalAUM)} trend={growth} sub="12-month growth" icon="💼" />
         <StatCard label="Active Clients" value={clientCount} sub={plan?.clientLimit ? `of ${plan.clientLimit} on ${plan.name}` : `on ${plan?.name}`} icon="👥" />
         <StatCard label="Avg Portfolio"  value={clientCount ? formatAUM(Math.round(totalAUM / clientCount)) : "—"} sub="per client" icon="📊" />
         <StatCard label="Dominant Risk"  value={dominantRisk.charAt(0).toUpperCase() + dominantRisk.slice(1)} sub="most common profile" icon="⚖️" />
+        <StatCard label="Reward Points"  value={points.toLocaleString()} sub="redeemable rewards" icon="🎁" />
       </div>
 
       <div className="grid lg:grid-cols-3 gap-6">
