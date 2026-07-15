@@ -13,7 +13,7 @@ async function readAll() {
     const raw = await readFile(CREDITS_FILE, "utf-8");
     return JSON.parse(raw);
   } catch (err) {
-    if (err.code === "ENOENT") return {}; // first run: no file yet
+    if (err.code === "ENOENT") return {}; 
     throw err;
   }
 }
