@@ -21,4 +21,15 @@ export const MOCK_USERS = [
     points: 3400,
     createdAt: "2024-05-22",
   },
+  {
+    id: "u3",
+    name: "Dawid Jaskólski",
+    email: "dawidj98@gmail.com",
+    password: "admin",
+    firm: "x",
+    planId: "premium",
+    clients: ["c1", "c2", "c3", "c4", "c5"],
+    points: 3400,
+    createdAt: "2024-05-22",
+  },
 ];

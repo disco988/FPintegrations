@@ -3,6 +3,7 @@ import { PLANS } from "../data/plans";
 import PricingCard from "../components/billing/PricingCard";
 import Card, { CardHeader, CardBody } from "../components/ui/Card";
 import Badge from "../components/ui/Badge";
+import { useState, useEffect } from "react";
 
 function nextBillingDate() {
   const d = new Date();
@@ -16,6 +17,18 @@ function nextBillingDate() {
 
 export default function BillingPage() {
   const { plan, clientCount } = useSubscription();
+
+  const [promoDetails, setPromoDetails] = useState(null);
+
+  useEffect(() => {
+    if (!window.fpr) return;
+
+    window.fpr("details", function (data) {
+      setPromoDetails(data);
+
+      console.log(data);
+    });
+  }, []);
 
   if (!plan) return null;
 
@@ -106,6 +119,15 @@ export default function BillingPage() {
         </CardBody>
       </Card>
 
+      {promoDetails && promoDetails.promo_code && (
+        <div>
+          <h1 className="text-blue-500">
+            Hey you came in with a referral link from{" "}
+            {promoDetails.promoter.first_name} {promoDetails.promoter.last_name}{" "}
+            You get a 10% discount - {promoDetails.promo_code}
+          </h1>
+        </div>
+      )}
       {/* Plan picker */}
       <div>
         <h2 className="text-lg font-semibold text-gray-900 mb-4">
@@ -118,6 +140,7 @@ export default function BillingPage() {
               plan={p}
               context="dashboard"
               currentPlanId={plan.id}
+              promoDetails={promoDetails}
             />
           ))}
         </div>

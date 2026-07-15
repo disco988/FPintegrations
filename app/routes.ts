@@ -23,5 +23,7 @@ export default [
       route("billing", "pages/BillingPage.jsx"),
     ]),
   ]),
+  route("api/fp-webhook", "routes/api.fp-webhook.jsx"),
+  route("api/credits", "routes/api.credits.jsx"),
   route("*", "pages/NotFoundPage.jsx"),
 ] satisfies RouteConfig;

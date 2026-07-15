@@ -7,6 +7,7 @@ export default function PricingCard({
   plan,
   context = "pricing",
   currentPlanId,
+  promoDetails,
 }) {
   const { currentUser } = useAuth();
   const navigate = useNavigate();
@@ -34,10 +35,13 @@ export default function PricingCard({
     });
 
     const product = cbInstance.initializeProduct(plan.itemPriceId);
+    if (promoDetails?.promo_code) {
+      product.addCoupon(promoDetails.promo_code);
+    }
     const cart = cbInstance.getCart();
     cart.replaceProduct(product);
-    cart.proceedToCheckout();
 
+    cart.proceedToCheckout();
   }
 
   function renderButton() {
